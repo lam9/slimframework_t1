@@ -53,6 +53,11 @@ $container['db'] = function ($c) {
 };
 
 
+/***
+ * Configuration des template de vue
+ */
+$container['view'] = new \Slim\Views\PhpRenderer("../templates/");
+
 /**
  * Création des routes
  */
@@ -67,7 +72,9 @@ $app->get('/tickets', function (Request $request, Response $response) {
 
 
    // $response->getBody()->write(var_export($tickets, true));
-    $response->getBody()->write(var_dump($tickets).var_dump($param));
+    //$response->getBody()->write(var_dump($tickets).var_dump($param));
+
+    $response = $this->view->render($response, "tickets.phtml", ["tickets" => $tickets, "router" => $this->router]);
     return $response;
 });
 
@@ -78,7 +85,7 @@ $app->get('/ticket/{id}', function (Request $request, Response $response, $args)
     $ticket = $mapper->getTicketById($ticket_id);
     $response->getBody()->write(var_dump($ticket));
     return $response;
-});
+})->setName("ticket-detail");
 
 
 /**

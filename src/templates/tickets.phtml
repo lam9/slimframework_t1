@@ -1,0 +1,51 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lmo
+ * Date: 01.11.17
+ * Time: 20:22
+ */
+?>
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <title>Affichage de tickets</title>
+</head>
+<body>
+<h1>All Tickets</h1>
+
+<p><a href="/ticket/new">Add new ticket</a></p>
+
+<table class="pure-table">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Component</th>
+        <th>Description</th>
+        <th>Actions</th>
+        <th>Lien</th>
+    </tr>
+
+    <?php foreach ($tickets as $ticket): ?>
+
+        <tr>
+            <td><?=$ticket['id'] ?></td>
+            <td><?=$ticket['title'] ?></td>
+            <td><?=$ticket['component'] ?></td>
+            <td><?=$ticket['description'] ?> ...</td>
+            <td><?=$ticket['action'] ?> ...</td>
+            <td>
+                <a href="<?=$router->pathFor('ticket-detail', ['id' => $ticket['id']])?>">view</a>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+</table>
+</body>
+</html>

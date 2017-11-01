@@ -12,7 +12,6 @@ class TicketMapper
 
     function __construct(PDO $db)
     {
-        var_dump($db);
         // charge les tickets. Simmule accès db.
         $this->getTickets();
 
